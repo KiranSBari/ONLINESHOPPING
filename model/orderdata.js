@@ -11,4 +11,17 @@ var Order = function(order){
 };
 
 
+Order.create = function (new_order, result) {    
+    sql.query("INSERT INTO tbl_customers set ?", new_order, function (err, res) {
+            if(err) {
+              console.log("error: ", err);
+              result(err, null);
+            }
+            else{
+              console.log(res.pk_orderID+" Data entered successfully");
+              result(null, res.pk_orderID);
+            }
+        });           
+};
 
+module.exports= Order;

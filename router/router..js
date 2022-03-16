@@ -22,12 +22,8 @@ app.route('/customer/:Id')
     .put(custController.update)
     .delete(custController.remove);
 
-// app.route('/order')
-//   //  .get(orderController.getAll)
-//     .post(orderController.insert);
+app.route('/order')
+   .post(orderController.insert);
 
-// app.route('/order/:Id')
-//    // .get(orderController.getBy)
-//     .put(orderController.update)
-//    // .delete(orderController.remove);
+
   };
