@@ -9,22 +9,6 @@ exports.getAll = function(req, res) {
   });
 };
 
-/*exports.insert = function(req, res) {
-  
-  var new_complaints= new Complaints(req.body);
-
-   if(!new_complaints.fk_custID || !new_complaints.description || !new_complaints.date || !new_complaints.orderId || !new_complaints.ratings){
-      res.status(400).send({ error:true, message: 'Please provide feedback' });
-    }
-   else{
-    Complaints.createComplaints(new_complaints, function(err, complaints) {
-      if (err)
-      res.send(err);
-    res.json(complaints);
-    });
-  }
-};*/
-
 
 exports.insert = function(req, res) {
   
