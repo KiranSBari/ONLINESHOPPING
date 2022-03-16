@@ -27,4 +27,28 @@ app.route('/order')
 
 app.route('/order/:Id')
    .delete(orderController.remove);
+
+app.route('/feedback')
+   .get(feedbackController.getAll)
+   .post(feedbackController.insert);
+ 
+app.route('/feedback/:feedbackId')
+    .get(feedbackController.getBy)
+    //.put(taskController.update)
+    .delete(feedbackController.remove);
+
+
+app.route('/complaints')
+    .get(complaintsController.getAll)
+    .post(complaintsController.insert);
+  
+ app.route('/complaints/:complaintsId')
+     .get(complaintsController.getBy)
+     .put(complaintsController.update)
+     .delete(complaintsController.remove);   
+
+
+
+
+
   };
