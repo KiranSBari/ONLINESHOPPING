@@ -25,5 +25,6 @@ app.route('/customer/:Id')
 app.route('/order')
    .post(orderController.insert);
 
-
+app.route('/order/:Id')
+   .delete(orderController.remove);
   };

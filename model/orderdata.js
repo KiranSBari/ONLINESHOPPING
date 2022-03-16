@@ -3,25 +3,40 @@ var sql = require('./db');
 var Order = function(order){
     
     this.pk_orderID=order.pk_orderID;
-    this.OrderDate=order.OrderDate;
-    this.OrderStatus=order.OrderStatus;
-    this.email=order.email;
-    this.ProductID=order.ProductID;
-    this.CustomerID=order.CustomerID;
+    this.orderDate=order.orderDate;
+    this.orderStatus=order.orderStatus;
+    this.productID=order.productID;
+    this.customerID=order.customerID;
 };
 
 
 Order.create = function (new_order, result) {    
-    sql.query("INSERT INTO tbl_customers set ?", new_order, function (err, res) {
+    sql.query("INSERT INTO tbl_order set ?", new_order, function (err, res) {
             if(err) {
               console.log("error: ", err);
               result(err, null);
             }
             else{
-              console.log(res.pk_orderID+" Data entered successfully");
+              console.log(" Data entered successfully");
               result(null, res.pk_orderID);
             }
         });           
 };
+
+
+
+Order.remove = function(id, result){
+    sql.query("DELETE FROM tbl_order WHERE pk_orderID = ?", [id], function (err, res) {
+                if(err) {
+                    console.log("error: ", err);
+                    result(null, err);
+                }
+                else{
+                    result(null, res);
+                }
+            }); 
+  };
+  
+
 
 module.exports= Order;
