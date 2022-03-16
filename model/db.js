@@ -6,7 +6,7 @@ var connection=mysql.createConnection({
     host:'localhost',
     user:'root',
     port:3366,
-    password:'',
+    password:'password',
     database:'db_onlineshopping'
 });
 
