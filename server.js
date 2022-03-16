@@ -10,7 +10,7 @@ var routes = require('./router/router.'); //importing route
 routes(app); //register the route
 
 var onListen=function(){
-  console.log("Go to http://localhost:3000/")
+  console.log(" Lets Go")
 }
 app.listen(3000,onListen);
 console.log("Server is listening on port 3000");
