@@ -1,5 +1,3 @@
-const { sendStatus } = require('express/lib/response');
-const { DEC8_SWEDISH_CI } = require('mysql/lib/protocol/constants/charsets');
 var sql = require('./db');
 
 var Order = function(order){
