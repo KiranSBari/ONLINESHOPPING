@@ -19,7 +19,6 @@ Complaints.createComplaints = function (newComplaints, result) {
             result(err, null);
           }
           else{
-            console.log(res.insertId);
             result(null, res.insertId);
           }
       });           
@@ -27,7 +26,7 @@ Complaints.createComplaints = function (newComplaints, result) {
 
 
 Complaints.getComplaintsById = function (complaintsId, result) {
-        sql.query("Select * from tbl_complains where id = ? ", complaintsId, function (err, res) {                 
+        sql.query("Select * from tbl_complains where pk_compID = ? ", complaintsId, function (err, res) {                 
                 if(err) {
                   console.log("error: ", err);
                   result(err, null);
@@ -39,14 +38,15 @@ Complaints.getComplaintsById = function (complaintsId, result) {
 };
 
 
-Complaints.getAllComplaints = function (result) {
-        sql.query("Select * from tbl_complains", function (err, res) {
+Complaints.summary = function (result) {
+        sql.query("SELECT count(pk_compID) as ResolvedComplaints, (SELECT count(pk_compID) from tbl_complains where status='In Process') as InProcess,(SELECT count(pk_compID) from tbl_complains where status= 'Pending') as  Pending,(SELECT count(pk_compID) from tbl_complains where status= 'Checked') as  Checked FROM tbl_complains WHERE status='Resolved'; "
+                  ,function (err, res) {
                 if(err) {
-                  console.log("error: ", err);
+                  // console.log("error: ", err);
                   result(null, err);
                 }
                 else{
-                  console.log('complaints : ', res);  
+                  // console.log('complaints : ', res);  
                   result(null, res);
                 }
             });   

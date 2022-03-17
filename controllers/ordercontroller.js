@@ -11,7 +11,7 @@ exports.insert = function(req, res) {
     Order.create(new_order, function(err, order) {
         if (err)
         res.send(err);
-        res.json({ message:"Data Inserted Successfully "});
+        res.send("Your order placed Successfully. Thank You :) ");
       });
   };
 
@@ -21,6 +21,6 @@ exports.remove = function(req, res) {
   Order.remove( req.params.Id, function(err, order) {
     if (err)
       res.send(err);
-    res.json({ message: 'Order data successfully deleted' });
+    res.send('Order Cancelled' );
   });
 };

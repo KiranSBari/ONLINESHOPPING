@@ -9,6 +9,16 @@ exports.getAll = function(req, res) {
   });
 };
 
+exports.getFullSummary = function(req, res) {
+  Feedback.summary(function(err, sum_back) {
+    if (err)
+      res.send(err);
+    res.send(sum_back);
+  });
+};
+
+
+
 exports.insert = function(req, res) {
   
 
@@ -22,7 +32,7 @@ exports.insert = function(req, res) {
     Feedback.createFeedback(new_feedback, function(err, feed) {
       if (err)
       res.send(err);
-    res.json("Data Inserted Successfully");
+    res.json("Thank you for your feedback.");
     });
   }
 };
@@ -41,6 +51,6 @@ exports.remove = function(req, res) {
   Feedback.remove( req.params.feedbackId, function(err, feedback) {
     if (err)
       res.send(err);
-    res.json({ message: 'feedback successfully deleted' });
+    res.json('Deleted Successfully');
   });
 };

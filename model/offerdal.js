@@ -28,11 +28,11 @@ Offers.createOffers = function (newOffers, result) {
 Offers.getAllOffers = function (result) {
     sql.query("SELECT * FROM db_onlineshopping.tbl_offers", function (err, res) {
             if(err) {
-              console.log("error: ", err);
+              // console.log("error: ", err);
               result(null, err);
             }
             else{
-              console.log('offers : ', res);  
+              // console.log('offers : ', res);  
               result(null, res);
             }
         });   
@@ -55,7 +55,7 @@ Offers.getOffersById = function (offerId, result) {
 Offers.updateById = function(offerId, offers, result){
   sql.query("UPDATE db_onlineshopping.tbl_offers SET name = ?, category = ?, discount = ? WHERE pk_offersID = ?", [offers.name,offers.category,offers.discount, offerId], function (err, res) {
           if(err) {
-                console.log("error: ", err);
+                // console.log("error: ", err);
                 result(null, err);
              }
            else{   
@@ -68,7 +68,7 @@ Offers.updateById = function(offerId, offers, result){
 Offers.remove = function(offerId, result){
   sql.query("DELETE FROM db_onlineshopping.tbl_offers WHERE pk_offersID = ?", [offerId], function (err, res) {
               if(err) {
-                  console.log("error: ", err);
+                  // console.log("error: ", err);
                   result(null, err);
               }
               else{

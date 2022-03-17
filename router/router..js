@@ -5,7 +5,8 @@ module.exports = function(app) {
   var orderController = require('../controllers/ordercontroller');
   var offerController = require('../controllers/offercontroller');
   var policyController = require('../controllers/policycontroller');
-  
+  var complaintsController = require('../controllers/complaintscontroler');
+  var feedbackController = require('../controllers/feedbackcontroler');
 
 app.route('/tasks')
     .get(taskController.getAll)
@@ -35,9 +36,14 @@ app.route('/feedback')
    .get(feedbackController.getAll)
    .post(feedbackController.insert);
  
+app.route('/feedback/summary')
+   .get(feedbackController.getFullSummary);
+
+app.route('/complaints/summary')
+   .get(complaintsController.getFullSummary)
+
 app.route('/feedback/:feedbackId')
     .get(feedbackController.getBy)
-    //.put(taskController.update)
     .delete(feedbackController.remove);
 
 

@@ -5,7 +5,7 @@ exports.getAll = function(req, res) {
   Offers.getAllOffers(function(err, offers) {
     if (err)
       res.send(err);
-    res.send(offers);
+    res.json({offers});
   });
 };
 
@@ -21,7 +21,7 @@ exports.insert = function(req, res) {
      Offers.createOffers(new_offers, function(err, offers) {
         if (err)
         res.send(err);
-      res.json(offers);
+      res.send("Offer Added Successfully.");
       });
     //}
   };
@@ -41,7 +41,7 @@ exports.insert = function(req, res) {
     Offers.updateById(req.params.offerId, new_offers1, function(err, offers) {
       if (err)
         res.send(err);
-      res.json(offers);
+      res.send("Offer Updated Successfully");
     });
   };
 
@@ -49,7 +49,7 @@ exports.insert = function(req, res) {
     Offers.remove( req.params.offerId, function(err, offers) {
       if (err)
         res.send(err);
-      res.json({ message: 'Offer successfully deleted' });
+      res.send('Offer Deleted Successfully ');
     });
   };
   

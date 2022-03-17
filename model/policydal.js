@@ -15,11 +15,11 @@ var Policy = function(policy){
 Policy.getAllPolicy = function (result) {
     sql.query("SELECT * FROM db_onlineshopping.tbl_policies;", function (err, res) {
             if(err) {
-              console.log("error: ", err);
+              // console.log("error: ", err);
               result(null, err);
             }
             else{
-              console.log('policy : ', res);  
+              // console.log('policy : ', res);  
               result(null, res);
             }
         });   
@@ -55,7 +55,7 @@ Policy.getPolicyById = function (policyId, result) {
 
 
 Policy.updateById = function(policyId, policy, result){
-  sql.query("UPDATE db_onlineshopping.tbl_policies SET polName = ? WHERE pk_policieID = ?", [policy.polName, policyId], function (err, res) {
+  sql.query("UPDATE db_onlineshopping.tbl_policies SET polName = ?,description = ?,category = ? WHERE pk_policieID = ?", [policy.polName,policy.description,policy.category, policyId], function (err, res) {
           if(err) {
                 console.log("error: ", err);
                 result(null, err);
