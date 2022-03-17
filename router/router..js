@@ -3,6 +3,9 @@ module.exports = function(app) {
   var custController = require('../controllers/custcontroller');
   var taskController = require('../controllers/taskcontroller');
   var orderController = require('../controllers/ordercontroller');
+  var offerController = require('../controllers/offercontroller');
+  var policyController = require('../controllers/policycontroller');
+  
 
 app.route('/tasks')
     .get(taskController.getAll)
@@ -47,7 +50,24 @@ app.route('/complaints')
      .put(complaintsController.update)
      .delete(complaintsController.remove);   
 
+app.route('/offers')
+     .get(offerController.getAll)
+     .post(offerController.insert);
+   
+app.route('/offers/:offerId')
+      .get(offerController.getBy)
+      .put(offerController.update)
+      .delete(offerController.remove);
 
+
+  app.route('/policy')
+  .get(policyController.getAll)
+  .post(policyController.insert);
+
+app.route('/policy/:policyId')
+   .get(policyController.getBy)
+   .put(policyController.update)
+   .delete(policyController.remove);
 
 
 
