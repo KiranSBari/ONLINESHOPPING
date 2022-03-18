@@ -10,6 +10,14 @@ exports.getAll = function(req, res) {
 };
 
 
+exports.getFullSummary = function(req, res) {
+  Complaints.summary(function(err, complaints) {
+    if (err)
+      res.send(err);
+    res.send(complaints);
+  });
+};
+
 exports.insert = function(req, res) {
   
   var new_complaints = new Complaints(req.body);
@@ -23,7 +31,9 @@ exports.insert = function(req, res) {
   Complaints.createComplaints(new_complaints, function(err, comp) {
       if (err)
       res.send(err);
-    res.json("Data Inserted Successfully");
+    res.send("Your Complaint is registered Successfully \n Complained ID is send to your registered Mobile Number.");
+    //Call to Get Customer data 
+    // call to send message /Email
     });
   }
 };
@@ -41,7 +51,17 @@ exports.update = function(req, res) {
   Complaints.updateById(req.params.complaintsId, new Complaints(req.body), function(err, complaints) {
     if (err)
       res.send(err);
-    res.json("complaints update successfully");
+    else{
+        if(req.body.status=="In Process")
+        res.json("Your complaint is in process.");
+        else if(req.body.status=="Resolved")
+        res.json("Complaint Resolved Successfully.");
+        else if(req.body.status=="Reject")
+        res.json("Complaint has been checked.");
+        else 
+        res.json("We will ensure this will not happen again.");
+    } 
+    
   });
 };
 
@@ -49,6 +69,6 @@ exports.remove = function(req, res) {
   Complaints.remove( req.params.complaintsId, function(err, complaints) {
     if (err)
       res.send(err);
-    res.json({ message: 'complaints successfully deleted' });
+    res.json('Deleted Successfully.');
   });
 };

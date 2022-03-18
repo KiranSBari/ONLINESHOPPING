@@ -3,8 +3,15 @@ module.exports = function(app) {
   var custController = require('../controllers/custcontroller');
   var taskController = require('../controllers/taskcontroller');
   var orderController = require('../controllers/ordercontroller');
+<<<<<<< HEAD
   var feedbackController= require('../controllers/feedbackcontroler');
   var complaintsController=require('../controllers/complaintscontroler')
+=======
+  var offerController = require('../controllers/offercontroller');
+  var policyController = require('../controllers/policycontroller');
+  var complaintsController = require('../controllers/complaintscontroler');
+  var feedbackController = require('../controllers/feedbackcontroler');
+>>>>>>> d039aa69e9fdfe4ed78eff44ee6ca183a72b62cd
 
 app.route('/tasks')
     .get(taskController.getAll)
@@ -34,9 +41,14 @@ app.route('/feedback')
    .get(feedbackController.getAll)
    .post(feedbackController.insert);
  
+app.route('/feedback/summary')
+   .get(feedbackController.getFullSummary);
+
+app.route('/complaints/summary')
+   .get(complaintsController.getFullSummary)
+
 app.route('/feedback/:feedbackId')
     .get(feedbackController.getBy)
-    //.put(taskController.update)
     .delete(feedbackController.remove);
 
 
@@ -49,7 +61,24 @@ app.route('/complaints')
      .put(complaintsController.update)
      .delete(complaintsController.remove);   
 
+app.route('/offers')
+     .get(offerController.getAll)
+     .post(offerController.insert);
+   
+app.route('/offers/:offerId')
+      .get(offerController.getBy)
+      .put(offerController.update)
+      .delete(offerController.remove);
 
+
+  app.route('/policy')
+  .get(policyController.getAll)
+  .post(policyController.insert);
+
+app.route('/policy/:policyId')
+   .get(policyController.getBy)
+   .put(policyController.update)
+   .delete(policyController.remove);
 
 
 
