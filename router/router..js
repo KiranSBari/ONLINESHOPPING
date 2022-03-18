@@ -3,6 +3,8 @@ module.exports = function(app) {
   var custController = require('../controllers/custcontroller');
   var taskController = require('../controllers/taskcontroller');
   var orderController = require('../controllers/ordercontroller');
+  var feedbackController= require('../controllers/feedbackcontroler');
+  var complaintsController=require('../controllers/complaintscontroler')
 
 app.route('/tasks')
     .get(taskController.getAll)
