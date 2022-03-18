@@ -36,8 +36,8 @@ Customer.create = function (new_Cust, result) {
               result(err, null);
             }
             else{
-              console.log(res +" Data entered successfully");
-              result(null, res.pk_custID);
+              console.log(JSON.stringify(res.firstName) +" Data entered successfully");
+              result(null, res);
             }
         });           
 };

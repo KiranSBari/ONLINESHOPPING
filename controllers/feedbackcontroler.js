@@ -17,14 +17,12 @@ exports.getFullSummary = function(req, res) {
   });
 };
 
-
-
 exports.insert = function(req, res) {
   
 
   var new_feedback = new Feedback(req.body);
 
-  //handles null error 
+  //Handles null error 
    if(!new_feedback.fk_custID || !new_feedback.description|| !new_feedback.date || !new_feedback.orderId ||!new_feedback.ratings){
       res.status(400).send({ error:true, message: 'Please provide' });
     }
