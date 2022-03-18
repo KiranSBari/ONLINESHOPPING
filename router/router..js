@@ -1,4 +1,6 @@
 'use strict';
+
+//roter mapping code
 module.exports = function(app) {
   var custController = require('../controllers/custcontroller');
   var orderController = require('../controllers/ordercontroller');

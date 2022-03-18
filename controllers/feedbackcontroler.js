@@ -1,6 +1,7 @@
 'use strict';
 var Feedback = require('../model/feedbackdal');
 
+//function to  get all feedback
 exports.getAll = function(req, res) {
   Feedback.getAllFeedback(function(err, feedback) {
     if (err)
@@ -9,6 +10,7 @@ exports.getAll = function(req, res) {
   });
 };
 
+//code to get count of feedback
 exports.getFullSummary = function(req, res) {
   Feedback.summary(function(err, sum_back) {
     if (err)
@@ -17,6 +19,8 @@ exports.getFullSummary = function(req, res) {
   });
 };
 
+
+//code to insert new feedback
 exports.insert = function(req, res) {
   
 
@@ -35,6 +39,7 @@ exports.insert = function(req, res) {
   }
 };
 
+//code to get feedback by id
 exports.getBy = function(req, res) {
   Feedback.getFeedbackById(req.params.feedbackId, function(err, feedback) {
     if (err)
@@ -44,7 +49,7 @@ exports.getBy = function(req, res) {
 };
 
 
-
+//code to remove feedback
 exports.remove = function(req, res) {
   Feedback.remove( req.params.feedbackId, function(err, feedback) {
     if (err)

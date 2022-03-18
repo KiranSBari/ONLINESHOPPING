@@ -1,6 +1,8 @@
 'use strict';
-var Complaints = require('../model/complaintsdal');
+var Complaints = require('../model/complaintsdal'); 
 
+
+//function to  get all complaints
 exports.getAll = function(req, res) {
   Complaints.getAllComplaints(function(err, complaints) {
     if (err)
@@ -9,7 +11,7 @@ exports.getAll = function(req, res) {
   });
 };
 
-
+//code to get count of complaints
 exports.getFullSummary = function(req, res) {
   Complaints.summary(function(err, complaints) {
     if (err)
@@ -17,6 +19,8 @@ exports.getFullSummary = function(req, res) {
     res.send(complaints);
   });
 };
+
+//code to insert new complaints
 
 exports.insert = function(req, res) {
   
@@ -38,7 +42,7 @@ exports.insert = function(req, res) {
   }
 };
 
-
+//code to get complaints by id
 exports.getBy = function(req, res) {
   Complaints.getComplaintsById(req.params.complaintsId, function(err, complaints) {
     if (err)
@@ -47,6 +51,7 @@ exports.getBy = function(req, res) {
   });
 };
 
+//code to update complaints
 exports.update = function(req, res) {
   Complaints.updateById(req.params.complaintsId, new Complaints(req.body), function(err, complaints) {
     if (err)
@@ -64,9 +69,9 @@ exports.update = function(req, res) {
     
   });
 };
-
+//to remove complaints
 exports.remove = function(req, res) {
-  Complaints.remove( req.params.complaintsId, function(err, complaints) {
+  Complaints.remove( req.params.complaintsId, function(err, complaints) {     
     if (err)
       res.send(err);
     res.json('Deleted Successfully.');
