@@ -1,21 +1,11 @@
 'use strict';
 module.exports = function(app) {
   var custController = require('../controllers/custcontroller');
-  var taskController = require('../controllers/taskcontroller');
   var orderController = require('../controllers/ordercontroller');
   var offerController = require('../controllers/offercontroller');
   var policyController = require('../controllers/policycontroller');
   var complaintsController = require('../controllers/complaintscontroler');
   var feedbackController = require('../controllers/feedbackcontroler');
-
-app.route('/tasks')
-    .get(taskController.getAll)
-    .post(taskController.insert);
-   
-app.route('/tasks/:taskId')
-    .get(taskController.getBy)
-    .put(taskController.update)
-    .delete(taskController.remove);
 
 app.route('/customer')
     .get(custController.getAll)
