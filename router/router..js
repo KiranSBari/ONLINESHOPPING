@@ -21,51 +21,51 @@ app.route('/customer/:Id')
     .put(custController.update)
     .delete(custController.remove);
 
-app.route('/order')
+app.route('/CRM/order')
    .post(orderController.insert);
 
-app.route('/order/:Id')
+app.route('/CRM/order/:Id')
    .delete(orderController.remove);
 
-app.route('/feedback')
+app.route('/CRM/feedback')
    .get(feedbackController.getAll)
    .post(feedbackController.insert);
  
-app.route('/feedback/summary')
+app.route('/CRM/feedback/summary')
    .get(feedbackController.getFullSummary);
 
-app.route('/complaints/summary')
+app.route('/CRM/complaints/summary')
    .get(complaintsController.getFullSummary)
 
-app.route('/feedback/:feedbackId')
+app.route('/CRM/feedback/:feedbackId')
     .get(feedbackController.getBy)
     .delete(feedbackController.remove);
 
 
-app.route('/complaints')
+app.route('/CRM/complaints')
     .get(complaintsController.getAll)
     .post(complaintsController.insert);
   
- app.route('/complaints/:complaintsId')
+ app.route('/CRM/complaints/:complaintsId')
      .get(complaintsController.getBy)
      .put(complaintsController.update)
      .delete(complaintsController.remove);   
 
-app.route('/offers')
+app.route('/CRM/offers')
      .get(offerController.getAll)
      .post(offerController.insert);
    
-app.route('/offers/:offerId')
+app.route('/CRM/offers/:offerId')
       .get(offerController.getBy)
       .put(offerController.update)
       .delete(offerController.remove);
 
 
-  app.route('/policy')
+  app.route('/CRM/policy')
   .get(policyController.getAll)
   .post(policyController.insert);
 
-app.route('/policy/:policyId')
+app.route('/CRM/policy/:policyId')
    .get(policyController.getBy)
    .put(policyController.update)
    .delete(policyController.remove);

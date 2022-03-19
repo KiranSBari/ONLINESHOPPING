@@ -24,6 +24,19 @@ Complaints.createComplaints = function (newComplaints, result) {
       });           
 };
 
+Complaints.getAllComplaints = function (result) {
+  sql.query("Select * from tbl_complains ", function (err, res) {                 
+          if(err) {
+            console.log("error: ", err);
+            result(err, null);
+          }
+          else{
+            result(null, res);     
+          }
+      });   
+};
+
+
 
 Complaints.getComplaintsById = function (complaintsId, result) {
         sql.query("Select * from tbl_complains where pk_compID = ? ", complaintsId, function (err, res) {                 
