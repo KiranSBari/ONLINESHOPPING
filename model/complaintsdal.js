@@ -28,7 +28,7 @@ Complaints.createComplaints = function (newComplaints, result) {
       });           
 };
 
-<<<<<<< HEAD
+
 Complaints.getAllComplaints = function (result) {
   sql.query("Select * from tbl_complains ", function (err, res) {                 
           if(err) {
@@ -43,9 +43,9 @@ Complaints.getAllComplaints = function (result) {
 
 
 
-=======
+
 //code to get complaints by id
->>>>>>> 5d1770c653598f3b2f33ed738621388e482661ef
+
 Complaints.getComplaintsById = function (complaintsId, result) {
         sql.query("Select * from tbl_complains where pk_compID = ? ", complaintsId, function (err, res) {                 
                 if(err) {
