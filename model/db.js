@@ -1,7 +1,8 @@
 // database connectivity
 var mysql= require('mysql');
 
-//define connection string
+//define connection configuration 
+
 var connection=mysql.createConnection({
     host:'localhost',
     user:'root',
