@@ -10,68 +10,63 @@ module.exports = function(app) {
 
   var offerController = require('../controllers/offercontroller');
   var policyController = require('../controllers/policycontroller');
-  var complaintsController = require('../controllers/complaintscontroler');
-  var feedbackController = require('../controllers/feedbackcontroler');
+  
 
-
-app.route('/customer')
+app.route('/api/customers')
     .get(custController.getAll)
     .post(custController.insert);
 
-app.route('/customer/:Id')
+app.route('/api/customers/:Id')
     .get(custController.getBy)
     .put(custController.update)
     .delete(custController.remove);
 
-app.route('/CRM/order')
+app.route('/api/orders')
    .post(orderController.insert);
 
-app.route('/CRM/order/:Id')
+app.route('/api/orders/:Id')
    .delete(orderController.remove);
 
-app.route('/CRM/feedback')
+app.route('/api/feedbacks')
    .get(feedbackController.getAll)
    .post(feedbackController.insert);
  
-app.route('/CRM/feedback/summary')
+app.route('/api/feedbacks/summary')
    .get(feedbackController.getFullSummary);
 
-app.route('/CRM/complaints/summary')
+app.route('/api/complaints/summary')
    .get(complaintsController.getFullSummary)
 
-app.route('/CRM/feedback/:feedbackId')
+app.route('/api/feedbacks/:feedbackId')
     .get(feedbackController.getBy)
     .delete(feedbackController.remove);
 
 
-app.route('/CRM/complaints')
+app.route('/api/complaints')
     .get(complaintsController.getAll)
     .post(complaintsController.insert);
   
- app.route('/CRM/complaints/:complaintsId')
+ app.route('/api/complaints/:complaintsId')
      .get(complaintsController.getBy)
      .put(complaintsController.update)
      .delete(complaintsController.remove);   
 
-app.route('/CRM/offers')
+app.route('/api/offers')
      .get(offerController.getAll)
      .post(offerController.insert);
    
-app.route('/CRM/offers/:offerId')
-      .get(offerController.getBy)
-      .put(offerController.update)
-      .delete(offerController.remove);
+app.route('/api/offers/:offerId')
+   .get(offerController.getBy)
+   .put(offerController.update)
+   .delete(offerController.remove);
 
-
-  app.route('/CRM/policy')
+app.route('/api/policy')
   .get(policyController.getAll)
   .post(policyController.insert);
 
-app.route('/CRM/policy/:policyId')
+app.route('/api/policy/:policyId')
    .get(policyController.getBy)
    .put(policyController.update)
    .delete(policyController.remove);
-
-
 
   };

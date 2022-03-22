@@ -8,7 +8,7 @@ var connection=mysql.createConnection({
     user:'root',
     port:3366,
     password:'password',
-    database:'db_onlineshopping'
+    database:'onlineshopping'
 });
 
 connection.connect(function(err){

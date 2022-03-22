@@ -2,7 +2,7 @@
 var sql = require('./db');
 
 var Policy = function(policy){
-    this.pk_policieID = policy.pk_policieID;
+    this.policieID = policy.policieID;
     this.polName = policy.polName;
     this.description = policy.description;
     this.category = policy.category;
@@ -13,7 +13,7 @@ var Policy = function(policy){
 
 
 Policy.getAllPolicy = function (result) {
-    sql.query("SELECT * FROM db_onlineshopping.tbl_policies;", function (err, res) {
+    sql.query("SELECT * FROM policies;", function (err, res) {
             if(err) {
               // console.log("error: ", err);
               result(null, err);
@@ -27,7 +27,7 @@ Policy.getAllPolicy = function (result) {
 
 
 Policy.createPolicy = function (newPolicy, result) {    
-    sql.query("INSERT INTO db_onlineshopping.tbl_policies set ?", newPolicy, function (err, res) {
+    sql.query("INSERT INTO policies set ?", newPolicy, function (err, res) {
             if(err) {
               console.log("error: ", err);
               result(err, null);
@@ -42,7 +42,7 @@ Policy.createPolicy = function (newPolicy, result) {
 
 
 Policy.getPolicyById = function (policyId, result) {
-  sql.query("SELECT * FROM db_onlineshopping.tbl_policies where pk_policieID = ? ", policyId, function (err, res) {             
+  sql.query("SELECT * FROM policies where policieID = ? ", policyId, function (err, res) {             
           if(err) {
             console.log("error: ", err);
             result(err, null);
@@ -55,7 +55,7 @@ Policy.getPolicyById = function (policyId, result) {
 
 
 Policy.updateById = function(policyId, policy, result){
-  sql.query("UPDATE db_onlineshopping.tbl_policies SET polName = ?,description = ?,category = ? WHERE pk_policieID = ?", [policy.polName,policy.description,policy.category, policyId], function (err, res) {
+  sql.query("UPDATE policies SET polName = ?,description = ?,category = ? WHERE policieID = ?", [policy.polName,policy.description,policy.category, policyId], function (err, res) {
           if(err) {
                 console.log("error: ", err);
                 result(null, err);
@@ -68,7 +68,7 @@ Policy.updateById = function(policyId, policy, result){
 
 
 Policy.remove = function(policyId, result){
-  sql.query("DELETE FROM db_onlineshopping.tbl_policies WHERE pk_policieID = ?", [policyId], function (err, res) {
+  sql.query("DELETE FROM policies WHERE policieID = ?", [policyId], function (err, res) {
               if(err) {
                   console.log("error: ", err);
                   result(null, err);

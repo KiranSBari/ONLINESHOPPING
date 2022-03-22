@@ -28,7 +28,7 @@ exports.insert = function(req, res) {
 
   //handles null error 
   
-  if(!new_complaints.pk_compID || !new_complaints.compType || !new_complaints.custID || !new_complaints.date || !new_complaints.status){
+  if(!new_complaints.compID || !new_complaints.compType || !new_complaints.custID || !new_complaints.date || !new_complaints.status){
     res.status(400).send({ error:true, message: 'Please provide correct data' });
   }
  else{

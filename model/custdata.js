@@ -5,7 +5,7 @@ var sql = require('./db');
 // Customer Function to store data at one object
 var Customer = function(cust){ 
     
-    this.pk_custID=cust.pk_custID;
+    this.custID=cust.custID;
     this.firstName=cust.firstName;
     this.lastName=cust.lastName;
     this.email=cust.email;
@@ -15,7 +15,7 @@ var Customer = function(cust){
 
 //Code to get all data from table 
 Customer.getAll = function (result) {
-    sql.query("Select * from tbl_customers", function (err, res) {
+    sql.query("Select * from customers", function (err, res) {
             if(err) {
               console.log("error: ", err);
               result(null, err);
@@ -30,7 +30,7 @@ Customer.getAll = function (result) {
 
 //Code to insert data in table 
 Customer.create = function (new_Cust, result) {    
-    sql.query("INSERT INTO tbl_customers set ?", new_Cust, function (err, res) {
+    sql.query("INSERT INTO customers set ?", new_Cust, function (err, res) {
             if(err) {
               console.log("error: ", err);
               result(err, null);
@@ -44,7 +44,7 @@ Customer.create = function (new_Cust, result) {
 
 //Code to get data of some selected customer
 Customer.getById = function (Id, result) {
-  sql.query("Select * from tbl_customers where pk_custID = ? ", Id, function (err, res) {             
+  sql.query("Select * from customers where custID = ? ", Id, function (err, res) {             
           if(err) {
             console.log("error: ", err);
             result(err, null);
@@ -57,7 +57,7 @@ Customer.getById = function (Id, result) {
 
 //Code to update data in table 
 Customer.updateById = function(id, cust, result){
-  sql.query("UPDATE tbl_customers SET firstName = ?,lastName=?,email=?,contactNum=?,location=? WHERE pk_custID = ?", [cust.firstName,cust.lastName,cust.email,cust.contactNum,cust.location, id], function (err, res) {
+  sql.query("UPDATE customers SET firstName = ?,lastName=?,email=?,contactNum=?,location=? WHERE pk_custID = ?", [cust.firstName,cust.lastName,cust.email,cust.contactNum,cust.location, id], function (err, res) {
           if(err) {
                 console.log("error: ", err);
                 result(null, err);
@@ -70,7 +70,7 @@ Customer.updateById = function(id, cust, result){
 
 //Code to delete data of any customer
 Customer.remove = function(id, result){
-  sql.query("DELETE FROM tbl_customers WHERE pk_custID = ?", [id], function (err, res) {
+  sql.query("DELETE FROM customers WHERE custID = ?", [id], function (err, res) {
               if(err) {
                   console.log("error: ", err);
                   result(null, err);
