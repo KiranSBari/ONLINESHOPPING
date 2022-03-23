@@ -25,13 +25,12 @@ exports.insert = function(req, res) {
       });
     
   };
-
+}
   exports.getBy = function(req, res) {
     Offers.getOffersById(req.params.Id, function(err, offers) {
       if (err)
         res.send(err);
-      else
-        res.json(offers);
+      res.json(offers);
     });
   };
 
@@ -53,4 +52,4 @@ exports.insert = function(req, res) {
       res.send('Offer Deleted Successfully ');
     });
   };
-}
+

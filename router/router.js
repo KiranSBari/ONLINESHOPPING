@@ -1,7 +1,7 @@
 'use strict';
 
 //roter mapping code
-module.exports = function(app) {
+module.exports  = function(app) {
   var custController = require('../controllers/custcontroller');
   var orderController = require('../controllers/ordercontroller');
 
@@ -54,11 +54,11 @@ app.route('/api/complaints/:complaintsId')
 app.route('/api/offers')
    .get(offerController.getAll)
    .post(offerController.insert);
-   
-// app.route('/api/offer/:Id')
-//    .get(offerController.getBy)
-//    .put(offerController.update)
-//    .delete(offerController.remove);
+
+app.route('/offers/:offerId')
+   .get(offerController.getBy)
+   .put(offerController.update)
+   .delete(offerController.delete);
 
 app.route('/api/policy')
   .get(policyController.getAll)
