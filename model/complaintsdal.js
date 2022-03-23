@@ -1,8 +1,12 @@
 'user strict';
 var sql = require('./db');
 
-var Complaints = function(complaints){
-    this.pk_compID = complaints.pk_compID;
+//data access logic
+var Complaints = function(complaints){        //complaints acts like object
+
+  //initialization code
+  //constructor
+    this.compID = complaints.compID;
     this.custID = complaints.custID;
     this.compType=complaints.compType;
     this.date = complaints.date;
@@ -11,9 +15,9 @@ var Complaints = function(complaints){
   //  this.created_at = new Date();
 };
 
-
+//code to insert new complaints in table
 Complaints.createComplaints = function (newComplaints, result) {    
-  sql.query("INSERT INTO db_onlineshopping.tbl_complains set ?", newComplaints, function (err, res) {
+  sql.query("INSERT INTO complains set ?", newComplaints, function (err, res) {
           if(err) {
             console.log("error: ", err);
             result(err, null);
@@ -25,8 +29,22 @@ Complaints.createComplaints = function (newComplaints, result) {
 };
 
 
+Complaints.getAllComplaints = function (result) {
+  sql.query("Select * from complains ", function (err, res) {                 
+          if(err) {
+            console.log("error: ", err);
+            result(err, null);
+          }
+          else{
+            result(null, res);     
+          }
+      });   
+};
+
+//code to get complaints by id
+
 Complaints.getComplaintsById = function (complaintsId, result) {
-        sql.query("Select * from tbl_complains where pk_compID = ? ", complaintsId, function (err, res) {                 
+        sql.query("Select * from complains where compID = ? ", complaintsId, function (err, res) {                 
                 if(err) {
                   console.log("error: ", err);
                   result(err, null);
@@ -37,9 +55,9 @@ Complaints.getComplaintsById = function (complaintsId, result) {
             });   
 };
 
-
+//code to get count of complaints 
 Complaints.summary = function (result) {
-        sql.query("SELECT count(pk_compID) as ResolvedComplaints, (SELECT count(pk_compID) from tbl_complains where status='In Process') as InProcess,(SELECT count(pk_compID) from tbl_complains where status= 'Pending') as  Pending,(SELECT count(pk_compID) from tbl_complains where status= 'Checked') as  Checked FROM tbl_complains WHERE status='Resolved'; "
+        sql.query("SELECT count(compID) as ResolvedComplaints, (SELECT count(compID) from complains where status='In Process') as InProcess,(SELECT count(compID) from complains where status= 'Pending') as  Pending,(SELECT count(compID) from complains where status= 'Checked') as  Checked FROM complains WHERE status='Resolved'; "
                   ,function (err, res) {
                 if(err) {
                   // console.log("error: ", err);
@@ -51,9 +69,9 @@ Complaints.summary = function (result) {
                 }
             });   
 };
-
+//code to get complaints updated by id
 Complaints.updateById = function(id, complaints, result){
-  sql.query("UPDATE `db_onlineshopping`.`tbl_complains` SET `custID` =?,`compType` =?,`date` =?,`status` =? WHERE (`pk_compID` = ?)", [complaints.custID,complaints.compType,complaints.date,complaints.status,id], function (err, res) {
+  sql.query("UPDATE `complains` SET `custID` =?,`compType` =?,`date` =?,`status` =? WHERE (`compID` = ?)", [complaints.custID,complaints.compType,complaints.date,complaints.status,id], function (err, res) {
     
           if(err) {
                console.log("error: ", err);
@@ -65,9 +83,9 @@ Complaints.updateById = function(id, complaints, result){
    }); 
 };  
 
-
+//code to remove complaints
 Complaints.remove = function(complaintsId, result){
-    sql.query("DELETE FROM `db_onlineshopping`.`tbl_complains` WHERE `pk_compID`  = ?", [complaintsId], function (err, res) {
+    sql.query("DELETE FROM `complains` WHERE `compID`  = ?", [complaintsId], function (err, res) {
                 if(err) {
                     console.log("error: ", err);
                     result(null, err);

@@ -2,7 +2,7 @@
 var sql = require('./db');
 
 var Offers = function(offers){
-    this.pk_offersID = offers.pk_offersID;
+    this.offersID = offers.offersID;
     this.name = offers.name;
     this.category = offers.category;
     this.discount = offers.discount;
@@ -12,7 +12,7 @@ var Offers = function(offers){
 };
 
 Offers.createOffers = function (newOffers, result) {    
-    sql.query("INSERT INTO db_onlineshopping.tbl_offers set ?", newOffers, function (err, res) {
+    sql.query("INSERT INTO onlineshopping.offers set ?", newOffers, function (err, res) {
             if(err) {
               console.log("error: ", err);
               result(err, null);
@@ -26,7 +26,7 @@ Offers.createOffers = function (newOffers, result) {
 
 
 Offers.getAllOffers = function (result) {
-    sql.query("SELECT * FROM db_onlineshopping.tbl_offers", function (err, res) {
+    sql.query("SELECT * FROM offers", function (err, res) {
             if(err) {
               // console.log("error: ", err);
               result(null, err);
@@ -40,7 +40,7 @@ Offers.getAllOffers = function (result) {
 
 
 Offers.getOffersById = function (offerId, result) {
-  sql.query("SELECT * FROM db_onlineshopping.tbl_offers where pk_offersID = ? ", offerId, function (err, res) {             
+  sql.query("SELECT * FROM offers where offersID = ? ", offerId, function (err, res) {             
           if(err) {
             console.log("error: ", err);
             result(err, null);
@@ -53,7 +53,7 @@ Offers.getOffersById = function (offerId, result) {
 
 
 Offers.updateById = function(offerId, offers, result){
-  sql.query("UPDATE db_onlineshopping.tbl_offers SET name = ?, category = ?, discount = ? WHERE pk_offersID = ?", [offers.name,offers.category,offers.discount, offerId], function (err, res) {
+  sql.query("UPDATE offers SET name = ?, category = ?, discount = ? WHERE offersID = ?", [offers.name,offers.category,offers.discount, offerId], function (err, res) {
           if(err) {
                 // console.log("error: ", err);
                 result(null, err);
@@ -66,7 +66,7 @@ Offers.updateById = function(offerId, offers, result){
 
 
 Offers.remove = function(offerId, result){
-  sql.query("DELETE FROM db_onlineshopping.tbl_offers WHERE pk_offersID = ?", [offerId], function (err, res) {
+  sql.query("DELETE FROM offers WHERE offersID = ?", [offerId], function (err, res) {
               if(err) {
                   // console.log("error: ", err);
                   result(null, err);

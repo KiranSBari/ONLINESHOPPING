@@ -6,11 +6,11 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
-var routes = require('./router/router.'); //importing route
+var routes = require('./router/router'); //importing route
 routes(app); //register the route
 
 var onListen=function(){
-  console.log(" Lets Go")
+  console.log("Lets Again Start ")
 }
 app.listen(3000,onListen);
 console.log("Server is listening on port 3000");
