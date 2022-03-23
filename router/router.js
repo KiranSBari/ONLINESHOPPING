@@ -58,7 +58,7 @@ app.route('/api/offers')
 app.route('/offers/:offerId')
    .get(offerController.getBy)
    .put(offerController.update)
-   .delete(offerController.delete);
+   .delete(offerController.remove);
 
 app.route('/api/policy')
   .get(policyController.getAll)
