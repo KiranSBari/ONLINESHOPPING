@@ -1,11 +1,14 @@
 'user strict';
 var sql = require('./db');
 
-var Feedback = function(feedback){
-    this.fk_custID = feedback.fk_custID;
+//data access logic
+var Feedback = function(feedback){     
+
+  //initilization code
+    this.custID = feedback.custID;
     this.description = feedback.description;
     this.date = feedback.date;                
-    this.orderId = feedback.orderId;
+    
     this.ratings = feedback.ratings;
       
   //  this.created_at = new Date();
@@ -13,7 +16,7 @@ var Feedback = function(feedback){
 
 
 Feedback.createFeedback = function (newFeedback, result) {    
-  sql.query("INSERT INTO db_onlineshopping.tbl_feedback set ?", newFeedback, function (err, res) {
+  sql.query("INSERT INTO feedback set ?", newFeedback, function (err, res) {
           if(err) {
             console.log("error: ", err);
             result(err, null);
@@ -25,11 +28,16 @@ Feedback.createFeedback = function (newFeedback, result) {
       });           
 };
 
+//code to get feedback by id
 Feedback.getFeedbackById = function (feedbackId, result) {
+
   try{
 
   
         sql.query("Select * from tbl_feedback where fk_custID = ? ", feedbackId, function (err, res) {             
+
+        sql.query("Select * from feedback where custID = ? ", feedbackId, function (err, res) {             
+
                 if(err) {
                   console.log("error: ", err);
                   //result(err, null);
@@ -40,15 +48,16 @@ Feedback.getFeedbackById = function (feedbackId, result) {
               
             });   
           }
+       
           catch(err){
             result (err,null);
 
           }
 };
 
-
+//code to get all feedback
 Feedback.getAllFeedback = function (result) {
-        sql.query("Select * from tbl_feedback", function (err, res) {
+        sql.query("Select * from feedback", function (err, res) {
                 if(err) {
                   console.log("error: ", err);
                   result(null, err);
@@ -61,9 +70,9 @@ Feedback.getAllFeedback = function (result) {
 };
 
 
-
+//code to get count of feedback
 Feedback.summary = function (result) {
-  sql.query("SELECT count(fk_custID) as badfeeedback,(SELECT count(fk_custID) from tbl_feedback where ratings>3) as goodfeedback,(SELECT count(fk_custID) from tbl_feedback where ratings=3) as mediumfeedback FROM tbl_feedback WHERE ratings<3;"
+  sql.query("SELECT count(custID) as badfeeedback,(SELECT count(custID) from feedback where ratings>3) as goodfeedback,(SELECT count(custID) from feedback where ratings=3) as mediumfeedback FROM feedback WHERE ratings<3;"
   , function (err, res) {
           if(err) {
             console.log("error: ", err);
@@ -76,9 +85,9 @@ Feedback.summary = function (result) {
       });   
 };
 
-
+//code to remove feedback
 Feedback.remove = function(id, result){
-    sql.query("DELETE FROM tbl_feedback WHERE fk_custID = ?", [id], function (err, res) {
+    sql.query("DELETE FROM feedback WHERE custID = ?", [id], function (err, res) {
                 if(!err) {
                     console.log("error: ", err);
                     result(null, err);
