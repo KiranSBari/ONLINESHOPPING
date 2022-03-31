@@ -5,9 +5,9 @@ var mysql= require('mysql');
 var connection=mysql.createConnection({
     host:'localhost',
     user:'root',
-    port:3366,
     password:'password',
-    database:'db_onlineshopping'
+    database:'db_onlineshopping',
+    multipleStatements:true
 });
 
 connection.connect(function(err){

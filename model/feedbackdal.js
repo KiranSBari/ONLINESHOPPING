@@ -11,6 +11,7 @@ var Feedback = function(feedback){
   //  this.created_at = new Date();
 };
 
+
 Feedback.createFeedback = function (newFeedback, result) {    
   sql.query("INSERT INTO db_onlineshopping.tbl_feedback set ?", newFeedback, function (err, res) {
           if(err) {
@@ -25,15 +26,24 @@ Feedback.createFeedback = function (newFeedback, result) {
 };
 
 Feedback.getFeedbackById = function (feedbackId, result) {
+  try{
+
+  
         sql.query("Select * from tbl_feedback where fk_custID = ? ", feedbackId, function (err, res) {             
                 if(err) {
                   console.log("error: ", err);
-                  result(err, null);
+                  //result(err, null);
                 }
                 else{
                   result(null, res);     
                 }
+              
             });   
+          }
+          catch(err){
+            result (err,null);
+
+          }
 };
 
 

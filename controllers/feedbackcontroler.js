@@ -1,8 +1,8 @@
 'use strict';
 var Feedback = require('../model/feedbackdal');
 
-exports.getAll = function(req, res) {
-  Feedback.getAllFeedback(function(err, feedback) {
+exports.getAll= function(req, res) {
+  Feedback.getAlFeedback(function(err, feedback) {
     if (err)
       res.send(err);
     res.send(feedback);
@@ -41,7 +41,7 @@ exports.getBy = function(req, res) {
   Feedback.getFeedbackById(req.params.feedbackId, function(err, feedback) {
     if (err)
       res.send(err);
-    res.json(feedback);
+    res.send(feedback);
   });
 };
 
