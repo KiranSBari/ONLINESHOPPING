@@ -12,7 +12,12 @@ var connection=mysql.createConnection({
 });
 
 connection.connect(function(err){
-    if(err) throw err;
+    if(err) 
+    {
+        console.log("There is error to connect to DB \n"+err)
+       // logError(err)
+        //throw err;
+    }
 
 });
 module.exports=connection;
