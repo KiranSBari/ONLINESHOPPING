@@ -6,9 +6,13 @@ var mysql= require('mysql');
 var connection=mysql.createConnection({
     host:'localhost',
     user:'root',
-    port:3366,
     password:'password',
+<<<<<<< HEAD
+    database:'db_onlineshopping',
+    multipleStatements:true
+=======
     database:'onlineshopping'
+>>>>>>> d7913b24e7aa5ea77f07c3b5d401fbd6edb503e1
 });
 
 connection.connect(function(err){
