@@ -34,11 +34,9 @@ Feedback.getFeedbackById = function (feedbackId, result) {
   try{
 
   
-        sql.query("Select * from tbl_feedback where fk_custID = ? ", feedbackId, function (err, res) {             
-
         sql.query("Select * from feedback where custID = ? ", feedbackId, function (err, res) {             
 
-                if(err) {
+               if(err) {
                   console.log("error: ", err);
                   //result(err, null);
                 }

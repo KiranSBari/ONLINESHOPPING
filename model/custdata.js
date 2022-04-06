@@ -15,9 +15,10 @@ var Customer = function(cust){
 
 //Code to get all data from table 
 Customer.getAll = function (result) {
+ // try{
     sql.query("Select * from customers", function (err, res) {
             if(err) {
-              console.log("error: ", err);
+            // console.log("error: ", err);
               result(null, err);
             }
             else{
@@ -25,7 +26,26 @@ Customer.getAll = function (result) {
               result(null, res);
             }
         });   
+  //    }
+  // catch(e ){
+  //   if (e instanceof Errors.ER_NO_SUCH_TABLE)
+  //   console.log("Table Not Found \n");
+   
+  // }
 };
+
+
+// Customer.getAll = function (result) {
+//   try{
+//     var res=sql.query("Select * from customers;");  
+//     result(null,res) ;
+//       }
+//   catch(e){
+//     console.log("Error in fatching data"+ e);
+
+//   }
+// };
+
 
 
 //Code to insert data in table 
@@ -36,7 +56,7 @@ Customer.create = function (new_Cust, result) {
               result(err, null);
             }
             else{
-              console.log(JSON.stringify(res.firstName) +" Data entered successfully");
+             // console.log(JSON.stringify(res.firstName) +" Data entered successfully");
               result(null, res);
             }
         });           
@@ -47,10 +67,10 @@ Customer.getById = function (Id, result) {
   sql.query("Select * from customers where custID = ? ", Id, function (err, res) {             
           if(err) {
             console.log("error: ", err);
-            result(err, null);
+            return(err);
           }
           else{
-            result(null, res);     
+            return(res);     
           }
       });   
 };

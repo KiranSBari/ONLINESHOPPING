@@ -5,8 +5,10 @@ var Complaints = require('../model/complaintsdal');
 //function to  get all complaints
 exports.getAll = function(req, res) {
   Complaints.getAllComplaints(function(err, complaints) {
-    if (err)
+    if (err){
+      console.log("Error to Get All DATA");
       res.send(err);
+    }
     res.send(complaints);
   });
 };
@@ -14,8 +16,10 @@ exports.getAll = function(req, res) {
 //code to get count of complaints
 exports.getFullSummary = function(req, res) {
   Complaints.summary(function(err, complaints) {
-    if (err)
+    if (err){
+      console.log("Error to Get Summary");
       res.send(err);
+    }
     res.send(complaints);
   });
 };
@@ -34,7 +38,7 @@ exports.insert = function(req, res) {
  else{
   Complaints.createComplaints(new_complaints, function(err, comp) {
       if (err)
-      res.send(err);
+      res.send("Unable to register complaint: \n"+err);
     res.send("Your Complaint is registered Successfully \n Complained ID is send to your registered Mobile Number.");
     //Call to Get Customer data 
     // call to send message /Email

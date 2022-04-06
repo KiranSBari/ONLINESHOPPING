@@ -1,14 +1,11 @@
 'use strict';
 var Feedback = require('../model/feedbackdal');
 
-<<<<<<< HEAD
-exports.getAll= function(req, res) {
-  Feedback.getAlFeedback(function(err, feedback) {
-=======
+
 //function to  get all feedback
 exports.getAll = function(req, res) {
   Feedback.getAllFeedback(function(err, feedback) {
->>>>>>> d7913b24e7aa5ea77f07c3b5d401fbd6edb503e1
+
     if (err)
       res.send(err);
     res.send(feedback);
