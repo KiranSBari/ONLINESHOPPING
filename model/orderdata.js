@@ -11,7 +11,7 @@ var Order = function(order){
 
 
 Order.create = function (new_order, result) {    
-    sql.query("INSERT INTO order set ?", new_order, function (err, res) {
+    sql.query("CALL insert_order(?,?,?,?,?);", [new_order.orderID,new_order.orderDate,new_order.orderStatus,new_order.productID,new_order.customerID], function (err, res) {
             if(err) {
               console.log("error: ", err);
               result(err, null);
@@ -23,10 +23,8 @@ Order.create = function (new_order, result) {
         });           
 };
 
-
-
 Order.remove = function(id, result){
-    sql.query("DELETE FROM order WHERE orderID = ?", [id], function (err, res) {
+    sql.query("CALL delete_order(?);", [id], function (err, res) {
                 if(err) {
                     console.log("error: ", err);
                     result(null, err);
@@ -37,6 +35,4 @@ Order.remove = function(id, result){
             }); 
   };
   
-
-
 module.exports= Order;

@@ -55,6 +55,10 @@ exports.insert = function (req, res) {
   if (!new_cust.contactNum) {
     res.status(400).send({ error: true, message: 'Mobile number is empty' });
   }
+  else if(!new_cust.email)
+  {
+    res.status(400).send({ error: true, message: 'Email field cannot be empty' });
+  }
   else if(!new_cust.firstName)
   {
     res.status(400).send({ error: true, message: 'Name field cannot be empty' });

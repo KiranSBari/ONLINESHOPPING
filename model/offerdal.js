@@ -11,8 +11,8 @@ var Offers = function(offers){
   //  this.created_at = new Date();
 };
 
-Offers.createOffers = function (newOffers, result) {    
-    sql.query("INSERT INTO onlineshopping.offers set ?", newOffers, function (err, res) {
+Offers.createOffers = function (newOffer, result) {    
+    sql.query("CALL insert_offer(?,?,?,?)",[newOffer.offerId,newOffer.name,newOffer.category,newOffer.discount], function (err, res) {
             if(err) {
               console.log("error: ", err);
               result(err, null);
@@ -26,7 +26,7 @@ Offers.createOffers = function (newOffers, result) {
 
 
 Offers.getAllOffers = function (result) {
-    sql.query("SELECT * FROM offers", function (err, res) {
+    sql.query("CALL get_all_offers();", function (err, res) {
             if(err) {
               // console.log("error: ", err);
               result(null, err);
@@ -40,7 +40,7 @@ Offers.getAllOffers = function (result) {
 
 
 Offers.getOffersById = function (offerId, result) {
-  sql.query("SELECT * FROM offers where offersID = ? ", offerId, function (err, res) {             
+  sql.query("CALL get_offer_byid(?) ", offerId, function (err, res) {             
           if(err) {
             console.log("error: ", err);
             result(err, null);
@@ -53,7 +53,7 @@ Offers.getOffersById = function (offerId, result) {
 
 
 Offers.updateById = function(offerId, offers, result){
-  sql.query("UPDATE offers SET name = ?, category = ?, discount = ? WHERE offersID = ?", [offers.name,offers.category,offers.discount, offerId], function (err, res) {
+  sql.query("CALL update_offer(?,?,?,?)", [offers.name,offers.category,offers.discount, offerId], function (err, res) {
           if(err) {
                 // console.log("error: ", err);
                 result(null, err);
@@ -66,7 +66,7 @@ Offers.updateById = function(offerId, offers, result){
 
 
 Offers.remove = function(offerId, result){
-  sql.query("DELETE FROM offers WHERE offersID = ?", [offerId], function (err, res) {
+  sql.query("CALL delete_offer(?)", [offerId], function (err, res) {
               if(err) {
                   // console.log("error: ", err);
                   result(null, err);

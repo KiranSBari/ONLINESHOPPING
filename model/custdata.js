@@ -16,12 +16,13 @@ var Customer = function(cust){
 //Code to get all data from table 
 Customer.getAll = function (result) {
  // try{
-    sql.query("Select * from customers", function (err, res) {
+    sql.query("CALL get_all_customers();", function (err, res) {
             if(err) {
             // console.log("error: ", err);
+            //throw err;
               result(null, err);
             }
-            else{
+            else{ 
               //console.log('Customers : ', res);     //To Print table data on Console
               result(null, res);
             }
@@ -50,7 +51,7 @@ Customer.getAll = function (result) {
 
 //Code to insert data in table 
 Customer.create = function (new_Cust, result) {    
-    sql.query("INSERT INTO customers set ?", new_Cust, function (err, res) {
+    sql.query("CALL insert_cust(?,?,?,?,?,?)", [new_Cust.custID,new_Cust.firstName,new_Cust.lastName,new_Cust.email,new_Cust.contactNum,new_Cust.location], function (err, res) {
             if(err) {
               console.log("error: ", err);
               result(err, null);
@@ -59,12 +60,13 @@ Customer.create = function (new_Cust, result) {
              // console.log(JSON.stringify(res.firstName) +" Data entered successfully");
               result(null, res);
             }
-        });           
+        });        
+        console.log("in dal")   ;
 };
 
 //Code to get data of some selected customer
 Customer.getById = function (Id, result) {
-  sql.query("Select * from customers where custID = ? ", Id, function (err, res) {             
+  sql.query("CALL get_cust_byid(?);", Id, function (err, res) {             
           if(err) {
             console.log("error: ", err);
             return(err);
@@ -77,12 +79,13 @@ Customer.getById = function (Id, result) {
 
 //Code to update data in table 
 Customer.updateById = function(id, cust, result){
-  sql.query("UPDATE customers SET firstName = ?,lastName=?,email=?,contactNum=?,location=? WHERE pk_custID = ?", [cust.firstName,cust.lastName,cust.email,cust.contactNum,cust.location, id], function (err, res) {
+  sql.query("CALL update_cust(?,?,?,?,?,?);", [cust.firstName,cust.lastName,cust.email,cust.contactNum,cust.location, id], function (err, res) {
           if(err) {
                 console.log("error: ", err);
                 result(null, err);
              }
            else{   
+            console.log("output: ", res);
              result(null, res);
             }
     }); 
@@ -90,7 +93,7 @@ Customer.updateById = function(id, cust, result){
 
 //Code to delete data of any customer
 Customer.remove = function(id, result){
-  sql.query("DELETE FROM customers WHERE custID = ?", [id], function (err, res) {
+  sql.query("CALL delete_cust(?);", [id], function (err, res) {
               if(err) {
                   console.log("error: ", err);
                   result(null, err);
