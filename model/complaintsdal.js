@@ -56,13 +56,13 @@ Complaints.getComplaintsById = function (compId, result) {
 
 //code to get count of complaints 
 Complaints.summary = function (result) {
-        sql.query("CALL get_summary();",function (err, res) {
+  sql.query("CALL get_summary(@R,@P,@Pe,@C);",function (err, res) {
                 if(err) {
                   // console.log("error: ", err);
                   result(null, err);
                 }
                 else{
-                  // console.log('complaints : ', res);  
+                  console.log('complaints : ', res);  
                   result(null, res);
                 }
             });   
@@ -79,7 +79,7 @@ Complaints.updateById = function(id, complaints, result){
            result(null, res);
             }
    }); 
-};  
+}; 
 
 //code to remove complaints
 Complaints.remove = function(complaintsId, result){
