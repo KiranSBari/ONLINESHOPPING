@@ -54,7 +54,7 @@ app.route('/api/offers')
    .get(offerController.getAll)
    .post(offerController.insert);
 
-app.route('/offers/:offerId')
+app.route('/api/offers/:offerId')
    .get(offerController.getBy)
    .put(offerController.update)
    .delete(offerController.remove);
