@@ -6,13 +6,19 @@ var mysql= require('mysql');
 var connection=mysql.createConnection({
     host:'localhost',
     user:'root',
-    port:3366,
     password:'password',
+    port: 3366,
+    multipleStatements:true,
     database:'onlineshopping'
+
 });
 
 connection.connect(function(err){
-    if(err) throw err;
+    if(err) 
+    {
+        console.log("There is error to connect to DB \n"+ err)
+         //throw err;
+    }
 
 });
 module.exports=connection;

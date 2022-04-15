@@ -14,7 +14,6 @@ var Feedback = function(feedback){
   //  this.created_at = new Date();
 };
 
-//code to insert new feedback in table
 
 Feedback.createFeedback = function (newFeedback, result) {    
   sql.query("INSERT INTO feedback set ?", newFeedback, function (err, res) {
@@ -31,15 +30,27 @@ Feedback.createFeedback = function (newFeedback, result) {
 
 //code to get feedback by id
 Feedback.getFeedbackById = function (feedbackId, result) {
+
+  try{
+
+  
         sql.query("Select * from feedback where custID = ? ", feedbackId, function (err, res) {             
-                if(err) {
+
+               if(err) {
                   console.log("error: ", err);
-                  result(err, null);
+                  //result(err, null);
                 }
                 else{
                   result(null, res);     
                 }
+              
             });   
+          }
+       
+          catch(err){
+            result (err,null);
+
+          }
 };
 
 //code to get all feedback

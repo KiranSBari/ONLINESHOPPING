@@ -21,7 +21,6 @@ app.route('/api/customers/:Id')
     .put(custController.update)
     .delete(custController.remove);
 
-    
 app.route('/api/orders')
    .post(orderController.insert);
 
@@ -31,16 +30,16 @@ app.route('/api/orders/:Id')
 app.route('/api/feedbacks')
    .get(feedbackController.getAll)
    .post(feedbackController.insert);
+
+app.route('/api/feedbacks/:feedbackId')
+   .get(feedbackController.getBy)
+   .delete(feedbackController.remove);
  
 app.route('/api/feedbacks/summary')
    .get(feedbackController.getFullSummary);
 
 app.route('/api/complaints/summary')
    .get(complaintsController.getFullSummary)
-
-app.route('/api/feedbacks/:feedbackId')
-    .get(feedbackController.getBy)
-    .delete(feedbackController.remove);
 
 app.route('/api/complaints')
     .get(complaintsController.getAll)
