@@ -10,7 +10,7 @@ exports.getAll = function(req, res) {
 };
 
 exports.insert = function(req, res) {
-  
+  console.log("In API Function;")
     var new_policy = req.body;
     Policy.createPolicy(new_policy, function(err, policy) {
         if (err)
